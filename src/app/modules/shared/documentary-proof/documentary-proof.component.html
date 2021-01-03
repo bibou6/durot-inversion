@@ -1,0 +1,10 @@
+<app-documentary-proof-creation-form *ngIf="createElement" 
+(element)="create($event)"></app-documentary-proof-creation-form>
+
+<button type="button" *ngIf="!createElement" (click)="openCreation()">Creer</button>
+<div *ngIf="showElement">
+    <p>{{element.name}}</p>
+    <p>{{element.startValidityDate | localDate }}</p>
+    <p>{{element.endValidityDate | localDate }}</p>
+
+</div>

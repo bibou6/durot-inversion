@@ -1,0 +1,24 @@
+<div> Create new Documentary Proof </div>
+<form [formGroup]="form" (ngSubmit)="create(form.value)">
+    <div>
+        <label for="name">
+            Name
+        </label>
+        <input id="name" type="text" formControlName="name">
+      </div>
+    
+      <div>
+        <label for="startValidityDate">
+            Start validity Date
+        </label>
+        <input id="startValidityDate" type="date" formControlName="startValidityDate">
+    </div>
+
+    <div>
+        <label for="endValidityDate">
+            End validity Date
+        </label>
+        <input id="endValidityDate" type="date" formControlName="endValidityDate">
+    </div>
+    <button class="button" type="submit">Create</button>
+</form>

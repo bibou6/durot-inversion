@@ -1,0 +1,32 @@
+<input type="number" placeholder="Enter value here" (change)="setNumber($event)"/>
+<button type="button" (click)="getResult()">Send</button>
+
+
+
+
+<app-user [test]="test" *ngIf="test != null"></app-user>
+
+<div> Create new user </div>
+<form [formGroup]="testForm" (ngSubmit)="onSubmit(testForm.value)">
+    <div>
+        <label for="name">
+            Name
+        </label>
+        <input id="name" type="text" formControlName="name">
+      </div>
+    
+      <div>
+        <label for="description">
+            Description
+        </label>
+        <input id="description" type="text" formControlName="description">
+    </div>
+    <button class="button" type="submit">create</button>
+</form>
+
+<p>All tests</p>
+<div class="row">
+    <div class="col-sm-3" *ngFor="let result of results">
+        <app-user [test]="result" *ngIf="result != null"></app-user>
+    </div>
+</div>
