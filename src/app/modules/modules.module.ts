@@ -6,6 +6,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
+import { CityComponent } from './city/city.component';
 
 
 
@@ -13,7 +14,8 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     DashboardComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    CityComponent
   ],
   imports: [
     CommonModule,

@@ -16,18 +16,16 @@ export class AuthService {
 
 
   login(username: string, password: string): void {
-    console.log("test");
     let params = new HttpParams()
     .set("username",username)
     .set("password",password);
-    console.log(params.toString());
 
     this.httpClient.post(this.config.environment.api.baseUrl+'/login', params.toString(), {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
     }).subscribe(
       response => {
-        console.log(response["access_token"]);
+        console.log(response);
         localStorage.setItem('jwt', JSON.stringify(response["access_token"]));
       }
     );
