@@ -15,21 +15,20 @@ export class AuthService {
   ) { }
 
 
-  login(username: string, password: string): void {
+  login(username: string, password: string): Observable<any> {
     let params = new HttpParams()
     .set("username",username)
     .set("password",password);
 
-    this.httpClient.post(this.config.environment.api.baseUrl+'/login', params.toString(), {
+    return this.httpClient.post(this.config.environment.api.baseUrl+'/login', params.toString(), {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
-    }).subscribe(
-      response => {
-        console.log(response);
-        localStorage.setItem('jwt', JSON.stringify(response["access_token"]));
-      }
-    );
+    });
          
+ }
+
+ getToken(){
+   return !!localStorage.getItem('jwt');
  }
 
 }

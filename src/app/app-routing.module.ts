@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthenticationGuard } from './core/guards/authentication.guard';
 import { CityComponent } from './modules/city/city.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { LoginComponent } from './modules/login/login.component';
@@ -7,12 +8,12 @@ import { DocumentaryProofComponent } from './modules/shared/documentary-proof/do
 import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'documentaryProof', component: DocumentaryProofComponent },
   { path: 'test', component: TestComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'city', component: CityComponent }, 
+  { path: 'city', component: CityComponent, canActivate: [AuthenticationGuard] }, 
 ];
 
 @NgModule({
