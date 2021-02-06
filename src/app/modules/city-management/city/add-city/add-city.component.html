@@ -1,0 +1,19 @@
+<form  class="example-form" [formGroup]="addCityForm" (ngSubmit)="onSubmit(addCityForm.value)">
+    <div>
+        <mat-form-field class="w-100">
+            <mat-label>{{'city.inputs.name.label' | translate }}</mat-label>
+                <input matInput formControlName="name" 
+                placeholder="{{'city.inputs.name.placeholder' | translate }}"
+                required>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="w-100">
+            <mat-label>{{ 'city.inputs.description.label' | translate }}</mat-label>
+            <input type="textarea" matInput formControlName="description" >
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-button mat-raised-button color="primary" type="submit">{{ 'global.actions.submit' | translate }}</button>
+    </div>
+</form>

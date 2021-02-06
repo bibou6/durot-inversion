@@ -25,7 +25,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DocumentaryProofComponent,
     TranslateModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }

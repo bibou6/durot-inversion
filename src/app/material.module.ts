@@ -10,6 +10,7 @@ import { MatInputModule} from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { MatCardModule } from '@angular/material/card';
         MatInputModule,
         MatCheckboxModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        MatDialogModule,
         
     ],
     exports: [
@@ -37,7 +39,8 @@ import { MatCardModule } from '@angular/material/card';
         MatInputModule,
         MatCheckboxModule,
         MatButtonModule,
-        MatCardModule
+        MatCardModule,
+        MatDialogModule,
 
     ]
 })

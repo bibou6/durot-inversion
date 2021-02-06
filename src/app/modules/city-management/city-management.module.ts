@@ -4,12 +4,14 @@ import { GetCitiesResolver } from './resolvers/get-cities.resolver';
 import { CityComponent } from './city/city.component';
 import { ModulesModule } from '../modules.module';
 import { SharedModule } from '../shared/shared.module';
+import { AddCityComponent } from './city/add-city/add-city.component';
 
 
 
 @NgModule({
   declarations: [
-    CityComponent
+    CityComponent,
+    AddCityComponent
   ],
   imports: [
     CommonModule,
