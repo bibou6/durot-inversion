@@ -16,6 +16,8 @@ import { MaterialModule } from './material.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -35,6 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     MaterialModule,
     ModulesModule,
+    FlexLayoutModule,
     CoreModule,
     HttpModule.forRoot({ environment }),
     BrowserAnimationsModule,
@@ -46,10 +49,11 @@ export function HttpLoaderFactory(http: HttpClient) {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-  })
+    })
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { 
 

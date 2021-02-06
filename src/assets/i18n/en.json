@@ -1,10 +1,49 @@
 {
+    "app": {
+        "name": "Real Estate Server"
+    },
     "menu": {
         "login": {
-            "label": "Me connecter"
+            "label": "Log in"
         },
-        "City": {
-            "label": "Mes Villes"
+        "city": {
+            "label": "My cities"
+        }
+    },
+    "login": {
+        "inputs": {
+            "email": {
+                "label": "E-mail",
+                "placeholder": "Ex: monemail@societe.com",
+                "invalid": "The email format is incorrect"
+            },
+            "password" : {
+                "label": "Password"
+            }
+        }
+    },
+    "city": {
+        "inputs": {
+            "rank":{
+                "label":"Ranking"
+            }
+        }
+    },
+    "global": {
+        "actions": {
+            "submit": "Submit",
+            "login": "Log in",
+            "send": "Send",
+            "edit": "Edit",
+            "delete": "Delete",
+            "view": "View",
+            "rank": "Rank",
+            "add": "Ajouter"
+        },
+        "inputs": {
+            "controls": {
+                "required": "Required"
+            }
         }
     }
 }

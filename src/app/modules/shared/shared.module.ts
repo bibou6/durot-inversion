@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalDatePipe } from 'src/app/core/pipes/local-date.pipe';
 import { CoreModule } from 'src/app/core/core.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { MaterialModule } from 'src/app/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -16,10 +18,14 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
+    MaterialModule,
+    FlexLayoutModule
   ], 
   exports: [
     DocumentaryProofComponent,
-    TranslateModule
+    TranslateModule,
+    MaterialModule,
+    FlexLayoutModule
   ]
 })
 export class SharedModule { }

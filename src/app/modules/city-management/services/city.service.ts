@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import {  Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EnvironmentConfig, ENV_CONFIG } from 'src/app/environment-config.interface';
-import { Test } from '../models/test.model';
 import { City } from '../models/city.model';
 import { InformationMap } from '../models/informationMap.model';
 

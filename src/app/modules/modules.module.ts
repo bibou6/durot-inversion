@@ -6,7 +6,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
-import { CityComponent } from './city/city.component';
+import { CityManagementModule } from './city-management/city-management.module';
 
 
 
@@ -15,7 +15,6 @@ import { CityComponent } from './city/city.component';
     DashboardComponent,
     UserComponent,
     LoginComponent,
-    CityComponent
   ],
   imports: [
     CommonModule,

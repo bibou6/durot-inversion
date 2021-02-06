@@ -1,0 +1,25 @@
+<div class="row">
+    <div *ngFor="let city of cities" class="col-xl-3 col-lg-4 col-md-6 cards">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>{{city.name}}</mat-card-title>
+                <mat-card-subtitle *ngIf="city.ranking != null">{{ 'city.inputs.rank.label' | translate }} : {{city.ranking}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image *ngIf="city.mainImage !=null " src="http://127.0.0.1:8000/{{city.mainImage.url}}" [alt]="city.mainImage.name">
+            <mat-card-content>
+                <p>{{city.description}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>{{'global.actions.view' | translate }}</button>
+                <button mat-button>{{'global.actions.rank' | translate }}</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-6 cards">
+        <mat-card class="example-card" class="text-center" >
+            <mat-card-content class="icon">
+                <mat-icon [inline]="true" valign>add</mat-icon>
+            </mat-card-content>   
+        </mat-card>
+    </div>
+</div>
