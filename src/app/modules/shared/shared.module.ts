@@ -5,6 +5,7 @@ import { CreationFormComponent } from './documentary-proof/creation-form/creatio
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalDatePipe } from 'src/app/core/pipes/local-date.pipe';
 import { CoreModule } from 'src/app/core/core.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -17,7 +18,8 @@ import { CoreModule } from 'src/app/core/core.module';
     CoreModule,
   ], 
   exports: [
-    DocumentaryProofComponent
+    DocumentaryProofComponent,
+    TranslateModule
   ]
 })
 export class SharedModule { }
