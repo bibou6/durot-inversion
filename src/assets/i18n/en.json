@@ -1,0 +1,10 @@
+{
+    "menu": {
+        "login": {
+            "label": "Me connecter"
+        },
+        "City": {
+            "label": "Mes Villes"
+        }
+    }
+}
