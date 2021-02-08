@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { TestComponent } from './test/test.component';
 import { HttpModule } from './http.module';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
@@ -18,6 +16,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { UnauthorizedInterceptor } from './core/services/unauthorized.interceptor';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -28,16 +29,16 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    TestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
-    ModulesModule,
+    ModulesModule,  
     FlexLayoutModule,
+    NgxDropzoneModule,
+    ImageCropperModule,
     CoreModule,
     HttpModule.forRoot({ environment }),
     BrowserAnimationsModule,
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

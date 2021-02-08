@@ -4,8 +4,8 @@
         <h1 class="example-app-name">{{ 'app.name' | translate }}</h1>
     </mat-toolbar>
   
-    <mat-sidenav-container class="example-sidenav-container">
-        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
+    <mat-sidenav-container class="example-sidenav-container"  [hasBackdrop]=false  autosize>
+        <mat-sidenav #snav [mode]="'push'" 
             [opened]="true"
             [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
             <mat-nav-list>

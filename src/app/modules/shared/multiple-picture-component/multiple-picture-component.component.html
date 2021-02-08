@@ -1,0 +1,10 @@
+<ngx-dropzone (change)="onSelect($event)" >
+    <ngx-dropzone-label>{{ label }}</ngx-dropzone-label>
+    <ngx-dropzone-image-preview 
+        ngProjectAs="ngx-dropzone-preview" 
+        *ngFor="let f of files" 
+        [file]="f"
+        [removable]="allowRemoval" 
+        (removed)="onRemove(f)">   
+    </ngx-dropzone-image-preview>
+</ngx-dropzone>

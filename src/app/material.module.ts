@@ -11,6 +11,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({
     imports: [
@@ -26,6 +28,9 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatButtonModule,
         MatCardModule,
         MatDialogModule,
+        MatStepperModule,
+        MatSnackBarModule
+        
         
     ],
     exports: [
@@ -41,7 +46,17 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatButtonModule,
         MatCardModule,
         MatDialogModule,
+        MatStepperModule,
+        MatSnackBarModule
 
+    ],
+    providers: [
+        {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+            duration: 3000, 
+            horizontalPosition: "end",
+            verticalPosition: "bottom",
+            panelClass: ['mat-toolbar', 'mat-primary']}
+        }
     ]
 })
 

@@ -1,19 +1,51 @@
-<form  class="example-form" [formGroup]="addCityForm" (ngSubmit)="onSubmit(addCityForm.value)">
-    <div>
-        <mat-form-field class="w-100">
-            <mat-label>{{'city.inputs.name.label' | translate }}</mat-label>
-                <input matInput formControlName="name" 
-                placeholder="{{'city.inputs.name.placeholder' | translate }}"
-                required>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field class="w-100">
-            <mat-label>{{ 'city.inputs.description.label' | translate }}</mat-label>
-            <input type="textarea" matInput formControlName="description" >
-        </mat-form-field>
-    </div>
-    <div>
-        <button mat-button mat-raised-button color="primary" type="submit">{{ 'global.actions.submit' | translate }}</button>
-    </div>
-</form>
+  <mat-horizontal-stepper #stepper labelPosition="bottom">
+    <mat-step [stepControl]="addCityForm" label="{{ 'city.forms.creation.label' | translate }}">
+        <form  class="example-form" [formGroup]="addCityForm" (ngSubmit)="onSubmitCity(addCityForm.value)">
+            <div>
+                <mat-form-field class="w-100">
+                    <mat-label>{{'city.inputs.name.label' | translate }}</mat-label>
+                        <input matInput formControlName="name" 
+                        placeholder="{{'city.inputs.name.placeholder' | translate }}"
+                        required [formControl]="nameFormControl">
+                    <mat-error *ngIf="nameFormControl.hasError('required')">
+                        {{ 'global.inputs.controls.required' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="w-100">
+                    <mat-label>{{ 'city.inputs.description.label' | translate }}</mat-label>
+                    <input type="textarea" matInput formControlName="description" >
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button mat-raised-button color="primary" type="submit"  [disabled]="!addCityForm.valid" matStepperNext>{{'global.actions.next' | translate}}</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="mainImageForm" label="{{ 'city.inputs.mainImage.label' | translate }}">
+        <form  class="example-form" [formGroup]="mainImageForm">
+            <app-single-picture-component
+             [label]="singleFormLabel"
+             (addImageEvent)="addMainImage($event)">
+            </app-single-picture-component>
+            <div class="mt-3">
+                <button mat-button mat-raised-button color="primary" class="mr-2" matStepperPrevious>{{'global.actions.previous' | translate}}</button>
+                <button mat-button mat-raised-button color="primary" matStepperNext>{{'global.actions.next' | translate}}</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="mainImageForm" label="{{ 'city.inputs.pictures.label' | translate }}">
+        <form  class="example-form" [formGroup]="mainImageForm">
+            <app-multiple-picture-component
+             [label]="multiFormLabel"
+             [allowRemoval]="false"
+             (onAddPicture)="addMultiplePicture($event)">
+            </app-multiple-picture-component>
+            <div class="mt-3">
+                <button mat-button mat-raised-button color="primary" class="mr-2" matStepperPrevious>{{'global.actions.previous' | translate}}</button>
+                <button mat-button mat-raised-button color="primary" (click)="close()">{{'global.actions.finish' | translate}}</button>
+            </div>
+        </form>
+    </mat-step>
+</mat-horizontal-stepper>

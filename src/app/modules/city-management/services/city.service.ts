@@ -26,11 +26,11 @@ export class CityService {
   }
 
   createCity(city:City): Observable<City> {
-    return this.httpClient.post<City>(this.config.environment.api.baseUrl+'/City',city);
+    return this.httpClient.post<City>(this.config.environment.api.baseUrl+'/city',city);
   }
 
-  updateCity(city:City): Observable<any> {
-    return this.httpClient.put<any>(this.config.environment.api.baseUrl+'/City/'+city.id,city);
+  updateCity(city:City): Observable<City> {
+    return this.httpClient.put<City>(this.config.environment.api.baseUrl+'/city/'+city.id,city);
   }
 
   deleteCity(id:number): Observable<any> {
@@ -41,10 +41,10 @@ export class CityService {
     return this.httpClient.delete<any>(this.config.environment.api.baseUrl + '/city/'+id+'/image');
   }
 
-  addImage(id:number, image:string): Observable<any>{
+  addImage(cityId:number, image:string): Observable<any>{
     let params = new HttpParams()
     .set("base64Image",image)
-    return this.httpClient.post<any>(this.config.environment.api.baseUrl+'/city/'+id+'/media',params.toString()
+    return this.httpClient.post<any>(this.config.environment.api.baseUrl+'/city/'+cityId+'/media',params.toString()
     ,{
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')

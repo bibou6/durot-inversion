@@ -4,6 +4,8 @@ import { City } from '../models/city.model';
 import { CityService } from '../services/city.service';
 import { AddCityComponent } from './add-city/add-city.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Component({
   selector: 'app-city',
@@ -22,7 +24,8 @@ export class CityComponent implements OnInit {
   constructor(
     private cityService:CityService,
     private route:ActivatedRoute,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private notifier:NotifierService) { }
 
   ngOnInit(): void {
     this.data = this.route.snapshot.data;
@@ -38,8 +41,21 @@ export class CityComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`); // Pizza!
+      if(result != null){
+        this.cities.push(result);
+        this.notifier.notify('city.flash.success.added');
+      }
     });
+  }
+
+
+  deleteCity(cityId:number,index:number){
+    this.cityService.deleteCity(cityId).subscribe(
+      () => {
+        this.cities.splice(index,1);
+        this.notifier.notify('city.flash.success.deleted');
+      }
+    )
   }
 
 }

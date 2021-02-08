@@ -17,7 +17,7 @@ export namespace City{
   export const Init = (): City => ({
     name: '',
     description: '',
-    creationDate: new Date(),
+    creationDate: null,
     updatedAt: null,
     images: [],
     mainImage: null,

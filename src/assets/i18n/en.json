@@ -26,6 +26,39 @@
         "inputs": {
             "rank":{
                 "label":"Ranking"
+            },
+            "name": {
+                "label": "Name of the city",
+                "placeholder": "Ex: Grenoble"
+            }, 
+            "description": {
+                "label": "Description",
+                "placeholder": "A description of the city"
+            }, 
+            "information": {
+                "label": "Innformation"
+            },
+            "creationDate": {
+                "label": "Creation Date"
+            },
+            "mainImage": {
+                "label": "Main image",
+                "add" : "Click to add the main image"
+            },
+            "pictures": {
+                "add":"Click to add images of the city",
+                "label": "Pictues of the city"
+            }
+        },
+        "forms": {
+            "creation": {
+                "label": "Création d'une ville"
+            }
+        },
+        "flash" : {
+            "success": {
+                "added": "City successfully added !",
+                "deleted": "City successfully deleted !"
             }
         }
     },
@@ -38,11 +71,22 @@
             "delete": "Delete",
             "view": "View",
             "rank": "Rank",
-            "add": "Ajouter"
+            "add": "Ajouter",
+            "next": "Next",
+            "previous": "Previous",
+            "finish": "Finish",
+            "crop": "Crop !",
+            "uncrop": "Change"
         },
         "inputs": {
             "controls": {
                 "required": "Required"
+            }
+        },
+        "flash": {
+            "error": {
+                "unauthorized": "You must be logged in to access this resource",
+                "forbidden": "You do not have the rights to access this resource"
             }
         }
     }
