@@ -23,7 +23,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FlexLayoutModule,
     NgxDropzoneModule,
     ImageCropperModule,
-    TranslateModule
+    TranslateModule.forChild()
     
   ], 
   exports: [
@@ -36,7 +36,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MultiplePictureComponentComponent,
     SinglePictureComponentComponent,
     ImageCropperModule,
-    TranslateModule
   ]
 })
 export class SharedModule { }

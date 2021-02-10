@@ -26,7 +26,7 @@ import { HttpClient } from '@angular/common/http';
     CoreModule, 
     SharedModule,
     CityManagementModule,
-    TranslateModule
+    TranslateModule.forChild()
   ],
   exports: [
     TranslateModule

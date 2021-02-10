@@ -15,11 +15,19 @@ export class AddCityComponent implements OnInit {
   addCityForm: FormGroup;
   isLinear = false;
   mainImageForm: FormGroup;
+  informationForm: FormGroup;
   secondFormGroup: FormGroup;
   
   nameFormControl = new FormControl('', [
     Validators.required,
   ]);
+  regionFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  departmentFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
 
   newCity: City = City.Init();
 
@@ -40,31 +48,41 @@ export class AddCityComponent implements OnInit {
 
   ngOnInit(): void {
     this.addCityForm = this.formBuilder.group(this.newCity,{
-      Validators: this.nameFormControl
+      Validators: [this.nameFormControl,this.regionFormControl,this.departmentFormControl]
     });
+
+    this.informationForm = this.formBuilder.group(this.newCity);
     this.mainImageForm = this.formBuilder.group({"image" : this.mainImage});
     this.translate.get('city.inputs.pictures.add').subscribe(
       res => this.multiFormLabel = res
     )
     this.translate.get('city.inputs.mainImage.add').subscribe(
-      res => this.multiFormLabel = res
+      res => this.singleFormLabel = res
     )
   }
 
 
-  onSubmitCity(data){
+  onSubmitCityMainData(data){
     if(data != null && data.name != null){
       this.newCity = data;
-      console.log(this.newCity);
       this.newCity = this.removeEmptyStringsFrom(this.newCity);
-      console.log(this.newCity);
       this.cityService.createCity(this.newCity).subscribe(
         res => {
-          console.log(res);
           this.newCity = res;
         }
       )
     }
+  }
+
+  onSubmitCityInformationData(data){
+    this.newCity.population = data.population;
+    this.newCity.description = data.description;
+    this.newCity = this.removeEmptyStringsFrom(this.newCity);
+    this.cityService.updateCity(this.newCity).subscribe(
+      res => {
+        this.newCity = res;
+      }
+    )
   }
 
   onNoClick(){

@@ -31,10 +31,22 @@
                 "label": "Name of the city",
                 "placeholder": "Ex: Grenoble"
             }, 
+            "region": {
+                "label": "Region",
+                "placeholder": "Ex: Champagne-Ardenne"
+            },
+            "department": {
+                "label": "Department",
+                "placeholder": "Ex: 51"
+            },
             "description": {
                 "label": "Description",
                 "placeholder": "A description of the city"
-            }, 
+            },
+            "population" : {
+                "label": "Population",
+                "placeholder": "Ex: 50000"
+            },
             "information": {
                 "label": "Innformation"
             },
@@ -52,7 +64,10 @@
         },
         "forms": {
             "creation": {
-                "label": "Création d'une ville"
+                "label": "Creation of a city"
+            },
+            "information": {
+                "label": "More information of the city"
             }
         },
         "flash" : {

@@ -36,8 +36,8 @@ export class CityComponent implements OnInit {
 
   addCity(){
     let dialogRef = this.dialog.open(AddCityComponent, {
-      height: '400px',
-      width: '600px',
+      height: 'auto',
+      width: 'auto',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -48,14 +48,11 @@ export class CityComponent implements OnInit {
     });
   }
 
-
-  deleteCity(cityId:number,index:number){
-    this.cityService.deleteCity(cityId).subscribe(
-      () => {
-        this.cities.splice(index,1);
-        this.notifier.notify('city.flash.success.deleted');
-      }
-    )
+  removeCity(event){
+    this.cities.splice(event,1);
   }
+
+
+  
 
 }
