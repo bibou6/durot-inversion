@@ -4,18 +4,19 @@
         <h1 class="example-app-name">{{ 'app.name' | translate }}</h1>
     </mat-toolbar>
   
-    <mat-sidenav-container class="example-sidenav-container"  [hasBackdrop]=false  autosize>
+    <mat-sidenav-container class="example-sidenav-container"  [hasBackdrop]=false  fullscreen>
         <mat-sidenav #snav [mode]="'push'" 
-            [opened]="true"
+            [opened]="false"
             [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
             <mat-nav-list>
-                <a mat-list-item routerLink="/login" >{{ 'menu.login.label' | translate }}</a>
-                <a mat-list-item routerLink="/city" >{{ 'menu.city.label' | translate }}</a>
+                <a mat-list-item (click)="snav.close()" routerLink="/login" >{{ 'menu.login.label' | translate }}</a>
+                <a mat-list-item (click)="snav.close()" routerLink="/city" >{{ 'menu.city.label' | translate }}</a>
             </mat-nav-list>
         </mat-sidenav>
   
-        <mat-sidenav-content class="content">
-            <router-outlet></router-outlet>
+        <mat-sidenav-content>
+            <app-loader *ngIf="loading"></app-loader>
+            <router-outlet *ngIf="!loading"></router-outlet>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

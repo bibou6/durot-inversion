@@ -1,10 +1,13 @@
-<ngx-dropzone (change)="onSelect($event)" >
+<button mat-button mat-raised-button color="primary" *ngIf="showClose" (click)="close()" class="w-100">
+	{{ 'global.actions.close' | translate }}
+</button>
+<ngx-dropzone (change)="onSelect($event)" class="dropzone mt-2" [maxFileSize]="1000000" >
     <ngx-dropzone-label>{{ label }}</ngx-dropzone-label>
     <ngx-dropzone-image-preview 
         ngProjectAs="ngx-dropzone-preview" 
         *ngFor="let f of files" 
         [file]="f"
         [removable]="allowRemoval" 
-        (removed)="onRemove(f)">   
+        (removed)="onRemove(f)">
     </ngx-dropzone-image-preview>
 </ngx-dropzone>

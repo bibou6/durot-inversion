@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NotifierService } from 'src/app/core/services/notifier.service';
 
 @Component({
   selector: 'app-multiple-picture-component',
@@ -20,6 +21,12 @@ export class MultiplePictureComponentComponent implements OnInit {
   @Input()
   allowRemoval:boolean = true
 
+  @Input()
+  showClose: boolean = false;
+
+  @Output()
+  onClose = new EventEmitter<any>();
+
   @Output()
   onAddPicture = new EventEmitter<any>();
 
@@ -29,13 +36,12 @@ export class MultiplePictureComponentComponent implements OnInit {
 
   
   files: File[] = [];
-  constructor() { }
+  constructor(private notifier:NotifierService) { }
 
   ngOnInit(): void {
   }
 
   onSelect(event) {
-    console.log(event);
     this.files.push(...event.addedFiles);
     for(var file of  event.addedFiles){
       if(this.base64Output){
@@ -48,11 +54,25 @@ export class MultiplePictureComponentComponent implements OnInit {
         this.onAddPicture.emit(file)
       }
     }
+
+	console.log(event);
+	for(var file of  event.rejectedFiles){
+		if(file.reason == 'size'){
+			this.notifier.error('global.flash.gallery.error.fileTooBig');
+		}
+
+	}
+
   }
   
   onRemove(event) {
     this.onRemovePicture.emit(this.files.indexOf(event));
     this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  close(){
+	  this.files = null;
+	  this.onClose.emit(true);
   }
 
 }

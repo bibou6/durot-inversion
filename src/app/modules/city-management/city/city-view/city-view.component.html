@@ -1,0 +1,81 @@
+<div class="content">
+    <div class="header">
+        <div class="photo" *ngIf="city.mainImage"><img src="http://localhost:8000/{{ city.mainImage.url }}"/></div>
+        <div class="title">{{ city.name }}</div>
+    </div>
+    <div class="description mt-3">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">{{ city.description }}</div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4 block">
+            <mat-list role="list">
+                <div mat-subheader>{{ 'city.labels.basic_information' | translate }} <button mat-button class="float-right" (click)="editBasicInfo = !editBasicInfo"><mat-icon color="primary">edit</mat-icon></button></div>
+				<div class="container">
+					<div *ngIf="!editBasicInfo">
+						<app-label label="{{ 'city.inputs.rank.label' | translate }}" [value]="city.ranking"></app-label>
+						<app-label label="{{ 'city.inputs.region.label' | translate }}" value="{{ city.region }} ({{ city.department}})"></app-label>
+						<app-label label="{{ 'city.inputs.population.label' | translate }}" value="{{ city.population | number:'1.0-0':'fr'}}"></app-label>
+					</div>
+					<div *ngIf="editBasicInfo">
+						<app-city-basic-info 
+							[city]="city" 
+							(submitForm)="updateCity($event)"></app-city-basic-info>
+					</div>
+				</div>
+            </mat-list>
+        </div>
+		<div class="col-md-4 block">
+            <mat-list role="list">
+                <div mat-subheader>{{ 'city.labels.realestate_information' | translate }}  <button mat-button class="float-right" (click)="editRealEstateInfo = !editRealEstateInfo"><mat-icon color="primary">edit</mat-icon></button></div>
+				<div class="container">
+					<div *ngIf="!editRealEstateInfo">
+						<app-label label="{{ 'city.inputs.buyingPriceBySquareMeters.label' | translate }}" 
+						[value]="city.buyingPriceBySquareMeters | eurosByM2"></app-label>
+						<app-label label="{{ 'city.inputs.rentPriceWoFournitureLongBySquareMeters.label' | translate }}" 
+						[value]="city.rentPriceWoFournitureLongBySquareMeters | eurosByM2"></app-label>
+						<app-label label="{{ 'city.inputs.rentPriceWithFournitureLongBySquareMeters.label' | translate }}" 
+						[value]="city.rentPriceWithFournitureLongBySquareMeters | eurosByM2"></app-label>
+						<app-label label="{{ 'city.inputs.rentPriceShortBySquareMeters.label' | translate }}" 
+						[value]="city.rentPriceShortBySquareMeters | eurosByM2"></app-label>
+						<app-label label="{{ 'city.inputs.rentalRequestLong.label' | translate }}" 
+						value="{{ ('city.inputs.rentalRequestLong.enum.'+ city.rentalRequestLong) | translate }}"></app-label>
+					</div>
+					<div *ngIf="editRealEstateInfo">
+						<app-city-real-estate-info
+							[city]="city" 
+							(submitForm)="updateCity($event)"
+						></app-city-real-estate-info>
+					</div>
+				</div>
+            </mat-list>
+        </div>
+        <div class="col-md-4 block">
+            <mat-list role="list">
+                <div mat-subheader>{{ 'city.labels.additional_information' | translate }}</div>
+                <div class="container" *ngFor="let info of city.informationMap; let myIndex=index;">
+					<app-label 
+						[label]="info.name"
+						[value]="info.value"
+						icon="close"
+						(clicked)="removeInformation(info.id,myIndex)"
+					></app-label>
+                </div>
+				<div class="mt-2">
+					<app-add-additional-information
+						(onValidated)="addInformationMap($event)">
+					</app-add-additional-information>
+				</div>
+            </mat-list>
+        </div>
+    </div>
+    <mat-divider class="primary"></mat-divider>
+    <app-gallery 
+		[images]="city.images" 
+		(onAddPicture)="addMultiplePicture($event)"
+		(onDelete)="deleteImage($event)"></app-gallery>
+</div>
+

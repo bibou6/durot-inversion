@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { City } from '../../../models/city.model';
 import { CityService } from '../../../services/city.service';
@@ -21,17 +22,23 @@ export class CityCardComponent implements OnInit {
 
   constructor(
     private cityService:CityService,
-    private notifier:NotifierService) { }
+    private notifier:NotifierService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
 
   deleteCity(cityId:number,index:number){
+    this.deleted.emit(index);
     this.cityService.deleteCity(cityId).subscribe(
       () => {
-        this.deleted.emit(index);
         this.notifier.notify('city.flash.success.deleted');
       }
     )
+  }
+
+  viewCity(cityId:number){
+    console.log(cityId);
+    this.router.navigate([ '/city/view', cityId ] );
   }
 }

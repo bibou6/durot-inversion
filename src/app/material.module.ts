@@ -10,9 +10,11 @@ import { MatInputModule} from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -47,7 +49,9 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
         MatCardModule,
         MatDialogModule,
         MatStepperModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+		MatOptionModule,
+		MatSelectModule
 
     ],
     providers: [
@@ -56,7 +60,11 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
             horizontalPosition: "end",
             verticalPosition: "bottom",
             panelClass: ['mat-toolbar', 'mat-primary']}
-        }
+        },
+        {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {
+            hasBackdrop: true,
+            disableClose: true,
+        }}
     ]
 })
 

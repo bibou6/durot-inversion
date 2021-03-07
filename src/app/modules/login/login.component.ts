@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     
     this.login = Login.loginInit();
     this.loginForm = this.formBuilder.group(this.login);
+    console.log(this.route.snapshot.queryParams['returnUrl']);
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
 

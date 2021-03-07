@@ -42,8 +42,16 @@ export class CityComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != null){
-        this.cities.push(result);
-        this.notifier.notify('city.flash.success.added');
+        if(result.id != null){
+          this.cities.push(result);
+          this.notifier.notify('city.flash.success.added');
+        }else{
+          console.log(result);
+          this.cityService.deleteCity(result).subscribe(
+            () => this.notifier.warn('city.flash.success.aborted')
+          );
+          
+        }
       }
     });
   }

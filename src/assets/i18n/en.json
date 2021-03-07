@@ -23,6 +23,11 @@
         }
     },
     "city": {
+        "labels" : {
+            "basic_information": "Information de base",
+            "additional_information": "Information additionelle",
+			"realestate_information": "Information immobilière"
+        },
         "inputs": {
             "rank":{
                 "label":"Ranking"
@@ -48,7 +53,20 @@
                 "placeholder": "Ex: 50000"
             },
             "information": {
-                "label": "Innformation"
+                "label": "Innformation",
+				"name": {
+					"label": "Name of the info"
+				},
+				"value": {
+					"label": "Value of the info"
+				},
+				"add" : "Add an information",
+				"flash": {
+					"success": {
+						"added": "Information added successfully !",
+						"removed":"Information deleted !"
+					}
+				}
             },
             "creationDate": {
                 "label": "Creation Date"
@@ -58,9 +76,37 @@
                 "add" : "Click to add the main image"
             },
             "pictures": {
-                "add":"Click to add images of the city",
-                "label": "Pictues of the city"
-            }
+                "add":"Click to add images of the city (max size: 1Mb)",
+                "label": "Pictues of the city",
+				"flash": {
+					"success": {
+						"added": "Picture added successfully !",
+						"removed":"Picture deleted !"
+					}
+				}
+            },
+			"rentalRequestLong": {
+				"label": "Rental request",
+				"enum": {
+					"VERY_STRONG": "Very Strong",
+					"STRONG": "Strong",
+					"NORMAL": "Normal",
+					"AVERAGE": "Average",
+					"WEAK": "Weak"
+				}
+			},
+			"buyingPriceBySquareMeters":  {
+				"label": "Selling price (€/m²)"
+			},
+			"rentPriceShortBySquareMeters":  {
+				"label": "Renting price short stay (€/m²)"
+			},
+			"rentPriceWithFournitureLongBySquareMeters":  {
+				"label": "Renting price long stay with fourniture (€/m²)"
+			},
+			"rentPriceWoFournitureLongBySquareMeters": {
+				"label": "Renting price long stay without fourniture (€/m²)"
+			}
         },
         "forms": {
             "creation": {
@@ -68,12 +114,16 @@
             },
             "information": {
                 "label": "More information of the city"
-            }
+            },
+			"rentalInformation": {
+				"label": "Rental information"
+			}
         },
         "flash" : {
             "success": {
                 "added": "City successfully added !",
-                "deleted": "City successfully deleted !"
+                "deleted": "City successfully deleted !",
+                "aborted": "The city was not added"
             }
         }
     },
@@ -86,12 +136,14 @@
             "delete": "Delete",
             "view": "View",
             "rank": "Rank",
-            "add": "Ajouter",
+            "add": "Add",
             "next": "Next",
             "previous": "Previous",
             "finish": "Finish",
-            "crop": "Crop !",
-            "uncrop": "Change"
+            "crop": "Validate",
+            "uncrop": "Change",
+			"cancel": "Cancel",
+			"close": "Close"
         },
         "inputs": {
             "controls": {
@@ -101,8 +153,14 @@
         "flash": {
             "error": {
                 "unauthorized": "You must be logged in to access this resource",
-                "forbidden": "You do not have the rights to access this resource"
-            }
+                "forbidden": "You do not have the rights to access this resource",
+                "internal_server_error": "An error occured, please try again later or contact your website administrator."
+            },
+			"gallery": {
+				"error": {
+					"fileTooBig": "File is too big to be uploaded"
+				}
+			}
         }
     }
 }

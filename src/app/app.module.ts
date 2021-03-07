@@ -19,10 +19,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { UnauthorizedInterceptor } from './core/services/unauthorized.interceptor';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AuthService } from './core/services/auth.service';
+import { SharedModule } from './modules/shared/shared.module';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
 }
 
 
@@ -41,6 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ImageCropperModule,
     CoreModule,
     HttpModule.forRoot({ environment }),
+    SharedModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     TranslateModule.forRoot({
@@ -50,11 +58,17 @@ export function HttpLoaderFactory(http: HttpClient) {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
     })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true},
+    AuthService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

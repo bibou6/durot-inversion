@@ -1,0 +1,16 @@
+<form  class="example-form" [formGroup]="addCityForm" (ngSubmit)="onSubmit(addCityForm.value)">
+	<div>
+		<mat-form-field class="w-100">
+			<mat-label>{{'city.inputs.name.label' | translate }}</mat-label>
+				<input matInput formControlName="name" 
+				placeholder="{{'city.inputs.name.placeholder' | translate }}"
+				required [formControl]="nameFormControl">
+			<mat-error *ngIf="nameFormControl.hasError('required')">
+				{{ 'global.inputs.controls.required' | translate }}
+			</mat-error>
+		</mat-form-field>
+	</div>
+	<div>
+		<button mat-button mat-raised-button color="primary" type="submit"  [disabled]="!addCityForm.valid">{{'global.actions.next' | translate}}</button>
+	</div>
+</form>

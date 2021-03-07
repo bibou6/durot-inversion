@@ -8,7 +8,7 @@
         <p>{{city.description}}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>{{'global.actions.view' | translate }}</button>
+        <button mat-button (click)="viewCity(city.id)">{{'global.actions.view' | translate }}</button>
         <button mat-button>{{'global.actions.rank' | translate }}</button>
         <button mat-button mat-raised-button color="primary" (click)="deleteCity(city.id,index)">{{'global.actions.delete' | translate }}</button>
     </mat-card-actions>

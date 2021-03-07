@@ -1,19 +1,22 @@
-<input type="file"  (change)="fileChangeEvent($event)" />
+<input type="file" mat-button mat-raised-button color="primary" (change)="fileChangeEvent($event)" />
 
-<image-cropper *ngIf="!validCrop && imageChangedEvent"
-    [imageChangedEvent]="imageChangedEvent"
-    [maintainAspectRatio]="false"
-    format="png"
-    (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded($event)"
-    (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()"
-></image-cropper>
+<div class="cropper-container">
+    <image-cropper *ngIf="!validCrop && imageChangedEvent"
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="false"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded($event)"
+        (cropperReady)="cropperReady()"
+        (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <img *ngIf="validCrop" class="img-fluid" [src]="croppedImage" />
+</div>
 
-<img *ngIf="validCrop" class="img-fluid" [src]="croppedImage" />
+
 
 <div>
-    <button mat-button mat-raised-button class="w-100 mt-2" *ngIf="!validCrop && imageChangedEvent" color="primary" (click)="validateCrop()">{{ 'global.actions.crop' | translate }}</button>
+    <button  mat-button mat-raised-button color="primary"  class="w-100 mt-2" *ngIf="!validCrop && imageChangedEvent"  (click)="validateCrop()">{{ 'global.actions.crop' | translate }}</button>
 </div>
 <div>
     <button mat-button mat-raised-button class="w-100 mt-2" *ngIf="validCrop" color="accent" (click)="reCrop()">{{ 'global.actions.uncrop' | translate }}</button>

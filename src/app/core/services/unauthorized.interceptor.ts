@@ -34,6 +34,9 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
                       this.notifier.error('global.flash.error.forbidden');
                       this.router.navigateByUrl("/unauthorized");
                       break;
+                  case 500:     //internal_server_error
+                      this.notifier.error('global.flash.error.internal_server_error');
+                      break;
               }
           } 
       }

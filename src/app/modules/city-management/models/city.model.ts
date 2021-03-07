@@ -1,5 +1,6 @@
 import { InformationMap } from "./informationMap.model";
 import { Media } from "../../../core/models/media.model";
+import { NgModuleResolver } from "@angular/compiler";
 
 export interface City {
     id?: number,
@@ -14,7 +15,15 @@ export interface City {
     images: Media[],
     mainImage: Media,
     base64MainImage:string,
-    informationMap: InformationMap[];
+    informationMap: InformationMap[],
+
+	//Real Estate Info
+	rentPriceShortBySquareMeters : number,
+	rentPriceWoFournitureLongBySquareMeters : number,
+	rentPriceWithFournitureLongBySquareMeters : number,
+	buyingPriceBySquareMeters : number,
+	rentalRequestLong : RentalRequestValue;
+	
 }
 
 export namespace City{
@@ -30,8 +39,21 @@ export namespace City{
     images: [],
     mainImage: null,
     base64MainImage: '',
-    informationMap: []
+    informationMap: [],
+	buyingPriceBySquareMeters: null,
+	rentPriceShortBySquareMeters: null,
+	rentPriceWithFournitureLongBySquareMeters: null,
+	rentPriceWoFournitureLongBySquareMeters: null,
+	rentalRequestLong: null
   });
+}
+
+export enum RentalRequestValue {
+	VERY_STRONG,
+	STRONG,
+	NORMAL,
+	AVERAGE,
+	WEAK
 }
 
 

@@ -1,0 +1,24 @@
+<div class="gallery-block">
+    <div class="row">
+        <div class="col-sm-4 col-md-3 mt-2" *ngFor="let image of _albums; let i=index" >
+			<div class="image-block">
+	            <button class="image-delete-button" mat-button (click)="remove(i)"><mat-icon color="primary">close</mat-icon></button>
+				<img class="img-thumbnail" [src]="image.thumb" (click)="open(i)" />
+			</div>
+        </div>
+		<div class="col-sm-4 col-md-3 mt-2" *ngIf="!addPictures">
+            <div class="img-thumbnail rounded image-card" (click)="addPictures = true">
+                <img mat-card-image [ngClass]="{'flipped' : addPictures}" class="image-card-m rounded" src="/assets/images/main/card_add.png" alt="Card Image Add">
+            </div>
+        </div>
+    </div>
+	<div *ngIf="addPictures" class="mt-2">
+		<app-multiple-picture-component
+             label="{{ 'city.inputs.pictures.add' | translate }}"
+			 [showClose]="true"
+             [allowRemoval]="false"
+             (onAddPicture)="addMultiplePicture($event)"
+			 (onClose)="addPictures = false">
+        </app-multiple-picture-component>
+	</div>
+</div>

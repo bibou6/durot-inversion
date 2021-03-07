@@ -11,10 +11,10 @@ export class AuthenticationGuard implements CanActivate {
   constructor(private authService:AuthService,private router:Router){}
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot){
-    if (!this.authService.getToken()) {  
+    if (!this.authService.isAuthenticated()) { 
         this.router.navigate(["login"],{ queryParams: { returnUrl: state.url }});  
     }  
-    return this.authService.getToken();
+    return this.authService.isAuthenticated();
   }
   
 }

@@ -8,6 +8,11 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { SinglePictureComponentComponent } from './single-picture-component/single-picture-component.component';
 import { MultiplePictureComponentComponent } from './multiple-picture-component/multiple-picture-component.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { LightboxModule } from 'ngx-lightbox';
+import { GalleryComponent } from './gallery/gallery.component';
+import { LoaderComponent } from './loader/loader.component';
+import { CoreModule } from 'src/app/core/core.module';
+import { LabelComponent } from './label/label.component';
 
 
 
@@ -15,6 +20,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
   declarations: [
     SinglePictureComponentComponent,
     MultiplePictureComponentComponent,
+    GalleryComponent,
+    LoaderComponent,
+    LabelComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +31,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FlexLayoutModule,
     NgxDropzoneModule,
     ImageCropperModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    MaterialModule,
+    LightboxModule
     
   ], 
   exports: [
@@ -36,6 +46,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MultiplePictureComponentComponent,
     SinglePictureComponentComponent,
     ImageCropperModule,
+    GalleryComponent,
+    LoaderComponent,
+	LabelComponent,
+	CoreModule
   ]
 })
 export class SharedModule { }

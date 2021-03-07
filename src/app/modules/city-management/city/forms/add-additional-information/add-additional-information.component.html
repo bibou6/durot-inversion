@@ -1,0 +1,27 @@
+<div class="container">
+	<div *ngIf="toAdd">
+		<form  class="example-form" [formGroup]="informationForm" (ngSubmit)="onSubmitInformationData(informationForm.value)">
+            <div class="row">
+				<div class="col-md-6">
+	                <mat-form-field class="w-100">
+	                    <mat-label>{{ 'city.inputs.information.name.label' | translate }}</mat-label>
+	                    <input matInput formControlName="name" >
+						<mat-error *ngIf="nameFormControl.invalid">{{ 'global.inputs.controls.required' | translate }}</mat-error>
+	                </mat-form-field>
+				</div>
+				<div class="col-md-6">
+	                <mat-form-field class="w-100">
+	                    <mat-label>{{ 'city.inputs.information.value.label' | translate }}</mat-label>
+	                    <input matInput formControlName="value" >
+						<mat-error *ngIf="valueFormControl.invalid">{{ 'global.inputs.controls.required' | translate }}</mat-error>
+	                </mat-form-field>
+				</div>
+            </div>
+            <div class="mt-3">
+                <button mat-button mat-raised-button color="primary" class="mr-2"(click)="onCancel()">{{'global.actions.cancel' | translate}}</button>
+                <button mat-button mat-raised-button color="primary" type="submit" [disabled]="!informationForm.valid">{{'global.actions.add' | translate}}</button>
+            </div>
+        </form>
+	</div>
+	<button *ngIf="!toAdd" mat-button mat-raised-button color="primary" class="float-right" (click)="showForm()">{{ 'city.inputs.information.add' |translate }}</button>
+</div>

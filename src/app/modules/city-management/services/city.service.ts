@@ -42,10 +42,9 @@ export class CityService {
   }
 
   addImage(cityId:number, image:string): Observable<any>{
-    let params = new HttpParams()
-    .set("base64Image",image)
-    return this.httpClient.post<any>(this.config.environment.api.baseUrl+'/city/'+cityId+'/media',params.toString()
-    ,{
+    let body = new URLSearchParams();
+    body.set("base64Image",image)
+    return this.httpClient.post<any>(this.config.environment.api.baseUrl+'/city/'+cityId+'/media',body.toString(),{
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
     });
@@ -56,7 +55,7 @@ export class CityService {
   }
 
   addInformationMap(id:number, informationMap:InformationMap): Observable<any>{
-    return this.httpClient.post<any>(this.config.environment.api.baseUrl+'/city/'+id,informationMap);
+    return this.httpClient.post<any>(this.config.environment.api.baseUrl+'/city/'+id+'/informationMap',informationMap);
   }
 
   deleteInformationMap(id:number,idMap:number){

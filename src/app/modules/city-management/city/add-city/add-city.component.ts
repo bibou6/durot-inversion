@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { City } from '../../models/city.model';
 import { TranslateService } from '@ngx-translate/core';
 import { CityService } from '../../services/city.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-add-city',
@@ -12,22 +13,10 @@ import { CityService } from '../../services/city.service';
 })
 export class AddCityComponent implements OnInit {
 
-  addCityForm: FormGroup;
   isLinear = false;
   mainImageForm: FormGroup;
-  informationForm: FormGroup;
   secondFormGroup: FormGroup;
   
-  nameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  regionFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  departmentFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
 
   newCity: City = City.Init();
 
@@ -38,6 +27,7 @@ export class AddCityComponent implements OnInit {
   multiFormLabel: string;
   singleFormLabel: string;
 
+  hasId:boolean = false;
   
 
   constructor(
@@ -47,11 +37,9 @@ export class AddCityComponent implements OnInit {
     private cityService:CityService) { }
 
   ngOnInit(): void {
-    this.addCityForm = this.formBuilder.group(this.newCity,{
-      Validators: [this.nameFormControl,this.regionFormControl,this.departmentFormControl]
-    });
+    
 
-    this.informationForm = this.formBuilder.group(this.newCity);
+	
     this.mainImageForm = this.formBuilder.group({"image" : this.mainImage});
     this.translate.get('city.inputs.pictures.add').subscribe(
       res => this.multiFormLabel = res
@@ -62,21 +50,19 @@ export class AddCityComponent implements OnInit {
   }
 
 
-  onSubmitCityMainData(data){
-    if(data != null && data.name != null){
-      this.newCity = data;
-      this.newCity = this.removeEmptyStringsFrom(this.newCity);
-      this.cityService.createCity(this.newCity).subscribe(
-        res => {
-          this.newCity = res;
-        }
-      )
-    }
+  createCity(event){
+	  this.newCity = event;
+	  this.newCity = this.removeEmptyStringsFrom(this.newCity);
+	  this.cityService.createCity(this.newCity).subscribe(
+		  res => {
+			  this.newCity = res;
+		  }
+	  )
+
   }
 
-  onSubmitCityInformationData(data){
-    this.newCity.population = data.population;
-    this.newCity.description = data.description;
+  updateCity(event){
+    this.newCity = event;
     this.newCity = this.removeEmptyStringsFrom(this.newCity);
     this.cityService.updateCity(this.newCity).subscribe(
       res => {
@@ -86,7 +72,10 @@ export class AddCityComponent implements OnInit {
   }
 
   onNoClick(){
-    this.dialogRef.close();
+    if(this.newCity)
+      this.dialogRef.close(this.newCity.id);
+    else
+      this.dialogRef.close(null);
   }
 
   addMainImage(event){
@@ -111,6 +100,7 @@ export class AddCityComponent implements OnInit {
   }
 
   close(){
+    console.log("closing");
     this.dialogRef.close(this.newCity);
   }
   
@@ -118,6 +108,15 @@ export class AddCityComponent implements OnInit {
     const clone = { ...obj };
     Object.entries(clone).forEach(([key, val]) => (val === '' || val == null) && delete clone[key]);
     return clone;
+  }
+
+  previous(stepper:MatStepper){
+	  console.log(stepper);
+	  stepper.previous();
+  }
+
+  next(stepper:MatStepper){
+	  stepper.next();
   }
 
 }

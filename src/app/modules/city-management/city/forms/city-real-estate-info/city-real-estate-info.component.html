@@ -1,0 +1,31 @@
+<form  class="example-form" [formGroup]="rentalInformationForm" (ngSubmit)="onSubmit(rentalInformationForm.value)">
+	<div>
+		<mat-form-field class="w-100">
+			<mat-label>{{ 'city.inputs.buyingPriceBySquareMeters.label' | translate }}</mat-label>
+			<input type="number" matInput formControlName="buyingPriceBySquareMeters" >
+		</mat-form-field>
+		<mat-form-field class="w-100">
+			<mat-label>{{ 'city.inputs.rentPriceWoFournitureLongBySquareMeters.label' | translate }}</mat-label>
+			<input type="number" matInput formControlName="rentPriceWoFournitureLongBySquareMeters" >
+		</mat-form-field>
+		<mat-form-field class="w-100">
+			<mat-label>{{ 'city.inputs.rentPriceWithFournitureLongBySquareMeters.label' | translate }}</mat-label>
+			<input type="number" matInput formControlName="rentPriceWithFournitureLongBySquareMeters" >
+		</mat-form-field>
+		<mat-form-field class="w-100">
+			<mat-label>{{ 'city.inputs.rentPriceShortBySquareMeters.label' | translate }}</mat-label>
+			<input type="number" matInput formControlName="rentPriceShortBySquareMeters" >
+		</mat-form-field>
+		<mat-form-field class="w-100">
+			<mat-label>{{ 'city.inputs.rentalRequestLong.label' | translate }}</mat-label>
+			<mat-select formControlName="rentalRequestLong">
+			  <mat-option>None</mat-option>
+			  <mat-option *ngFor="let enum of rentalRequestValue | keyvalue" [value]="enum.value">{{ ('city.inputs.rentalRequestLong.enum.'+ enum.value) | translate }}</mat-option>
+			</mat-select>
+		  </mat-form-field>
+	</div>
+	<div class="mt-3">
+		<button mat-button mat-raised-button *ngIf="showPrevious" color="primary" class="mr-2" matStepperPrevious>{{'global.actions.previous' | translate}}</button>
+		<button mat-button mat-raised-button color="primary" type="submit" [disabled]="city.id == null">{{'global.actions.next' | translate}}</button>
+	</div>
+</form>
